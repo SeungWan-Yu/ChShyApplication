@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         lateinit var readSocket: DataInputStream
         lateinit var cManager: ConnectivityManager
 
-        var ip = "192.168.0.1"
+        var ip = ""
         var port = 9179
         var mHandler = Handler()
         var closed = false
@@ -45,6 +45,10 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         initBarChart(viewBinding.chart)
         getchart(viewBinding.chart)
+        getcount()
+    }
+
+    private fun getcount() {
         viewBinding.ta11.text = "성도 [접수:${App.prefs.a11}명, 목표:24명] / 새영혼 [접수:${App.prefs.a11n}명]"
         viewBinding.ta12.text = "성도 [접수:${App.prefs.a12}명, 목표:16명] / 새영혼 [접수:${App.prefs.a12n}명]"
         viewBinding.ta13.text = "성도 [접수:${App.prefs.a13}명, 목표:17명] / 새영혼 [접수:${App.prefs.a13n}명]"
@@ -53,7 +57,6 @@ class MainActivity : AppCompatActivity() {
         viewBinding.ta22.text = "성도 [접수:${App.prefs.a22}명, 목표:27명] / 새영혼 [접수:${App.prefs.a22n}명]"
         viewBinding.ta23.text = "성도 [접수:${App.prefs.a23}명, 목표:17명] / 새영혼 [접수:${App.prefs.a23n}명]"
         viewBinding.ta24.text = "성도 [접수:${App.prefs.a24}명, 목표:22명] / 새영혼 [접수:${App.prefs.a24n}명]"
-
     }
 
 
@@ -83,6 +86,10 @@ class MainActivity : AppCompatActivity() {
                 ShowInfo().start()
             }
 
+        Handler(Looper.getMainLooper()).postDelayed({
+            ShowInfo().start()
+        },3000)
+
 
 
         viewBinding.textView21.setOnClickListener {
@@ -102,6 +109,7 @@ class MainActivity : AppCompatActivity() {
 
     val startDate = dateFormat.parse("20200425").time
     val endDate = dateFormat.parse("20230721").time
+        val endDate2 = dateFormat.parse("20230821").time
     val today = Calendar.getInstance().apply {
         set(Calendar.HOUR_OF_DAY, 0)
         set(Calendar.MINUTE, 0)
@@ -109,7 +117,20 @@ class MainActivity : AppCompatActivity() {
         set(Calendar.MILLISECOND, 0)
     }.time.time
 
-    viewBinding.dDay.text = "D-${(endDate - today) / (24 * 60 * 60 * 1000)}"
+        if ((endDate - today) / (24 * 60 * 60 * 1000) < 0){
+            viewBinding.dDay.text = "2차 수양회 D+${0-(endDate - today) / (24 * 60 * 60 * 1000)}"
+        }else{
+            viewBinding.dDay.text = "2차 수양회 D-${(endDate - today) / (24 * 60 * 60 * 1000)}"
+        }
+        if ((endDate2 - today) / (24 * 60 * 60 * 1000) < 0){
+            viewBinding.dDay2.text = "새영혼 접수 D+${0-(endDate2 - today) / (24 * 60 * 60 * 1000)}"
+        }else if((endDate2 - today) / (24 * 60 * 60 * 1000) == 0L){
+            viewBinding.dDay2.text = "새영혼 접수 D-day!!"
+        }else{
+            viewBinding.dDay2.text = "새영혼 접수 D-${(endDate2 - today) / (24 * 60 * 60 * 1000)}"
+        }
+
+
 
         //handler
         mHandler = object : Handler(Looper.getMainLooper()){  //Thread들로부터 Handler를 통해 메시지를 수신
@@ -119,13 +140,118 @@ class MainActivity : AppCompatActivity() {
                 when(msg.what){
                     1->Toast.makeText(this@MainActivity, "IP 주소가 잘못되었거나 서버의 포트가 개방되지 않았습니다.", Toast.LENGTH_SHORT).show()
                     2->Toast.makeText(this@MainActivity, "서버 포트 "+port +"가 준비되었습니다.", Toast.LENGTH_SHORT).show()
-                    3->Toast.makeText(this@MainActivity, msg.obj.toString(), Toast.LENGTH_SHORT).show()
+                    3-> {
+                        when (msg.obj) {
+                            "p11" -> {
+                                App.prefs.a11 = App.prefs.a11 + 1
+                            }
+                            "m11" -> {
+                                App.prefs.a11 = App.prefs.a11 - 1
+                            }
+                            "p12" -> {
+                                App.prefs.a12 = App.prefs.a12 + 1
+                            }
+                            "m12" -> {
+                                App.prefs.a12 = App.prefs.a12 - 1
+                            }
+                            "p13" -> {
+                                App.prefs.a13 = App.prefs.a13 + 1
+                            }
+                            "m13" -> {
+                                App.prefs.a13 = App.prefs.a13 - 1
+                            }
+                            "p14" -> {
+                                App.prefs.a14 = App.prefs.a14 + 1
+                            }
+                            "m14" -> {
+                                App.prefs.a14 = App.prefs.a14 - 1
+                            }
+                            "p21" -> {
+                                App.prefs.a21 = App.prefs.a21 + 1
+                            }
+                            "m21" -> {
+                                App.prefs.a21 = App.prefs.a21 - 1
+                            }
+                            "p22" -> {
+                                App.prefs.a22 = App.prefs.a22 + 1
+                            }
+                            "m22" -> {
+                                App.prefs.a22 = App.prefs.a22 - 1
+                            }
+                            "p23" -> {
+                                App.prefs.a23 = App.prefs.a23 + 1
+                            }
+                            "m23" -> {
+                                App.prefs.a23 = App.prefs.a23 - 1
+                            }
+                            "p24" -> {
+                                App.prefs.a24 = App.prefs.a24 + 1
+                            }
+                            "m24"-> {
+                                App.prefs.a24 = App.prefs.a24 - 1
+                            }
+                            "p11n" -> {
+                                App.prefs.a11n = App.prefs.a11n + 1
+                            }
+                            "m11n" -> {
+                                App.prefs.a11n = App.prefs.a11n - 1
+                            }
+                            "p12n" -> {
+                                App.prefs.a12n = App.prefs.a12n + 1
+                            }
+                            "m12n" -> {
+                                App.prefs.a12n = App.prefs.a12n - 1
+                            }
+                            "p13n" -> {
+                                App.prefs.a13n = App.prefs.a13n + 1
+                            }
+                            "m13n" -> {
+                                App.prefs.a13n = App.prefs.a13n - 1
+                            }
+                            "p14n" -> {
+                                App.prefs.a14n = App.prefs.a14n + 1
+                            }
+                            "m14n" -> {
+                                App.prefs.a14n = App.prefs.a14n - 1
+                            }
+                            "p21n" -> {
+                                App.prefs.a21n = App.prefs.a21n + 1
+                            }
+                            "m21n" -> {
+                                App.prefs.a21n = App.prefs.a21n - 1
+                            }
+                            "p22n" -> {
+                                App.prefs.a22n = App.prefs.a22n + 1
+                            }
+                            "m22n" -> {
+                                App.prefs.a22n = App.prefs.a22n - 1
+                            }
+                            "p23n" -> {
+                                App.prefs.a23n = App.prefs.a23n + 1
+                            }
+                            "m23n" -> {
+                                App.prefs.a23n = App.prefs.a23n - 1
+                            }
+                            "p24n" -> {
+                                App.prefs.a24n = App.prefs.a24n + 1
+                            }
+                            "m24n"-> {
+                                App.prefs.a24n = App.prefs.a24n - 1
+                            }
+                            "dday" -> {
+                                viewBinding.dDay.text =
+                                    "D-${(endDate - today) / (24 * 60 * 60 * 1000)}"
+                            }
+                        }
+                        getchart(viewBinding.chart)
+                        getcount()
+                    }
                     4->Toast.makeText(this@MainActivity, "연결이 종료되었습니다.", Toast.LENGTH_SHORT).show()
                     5->Toast.makeText(this@MainActivity, "이미 사용중인 포트입니다.", Toast.LENGTH_SHORT).show()
                     6->Toast.makeText(this@MainActivity, "서버 준비에 실패하였습니다.", Toast.LENGTH_SHORT).show()
                     7->Toast.makeText(this@MainActivity, "서버가 종료되었습니다.", Toast.LENGTH_SHORT).show()
                     8->Toast.makeText(this@MainActivity, "서버가 정상적으로 닫히는데 실패하였습니다.", Toast.LENGTH_SHORT).show()
-                    9-> viewBinding.ipport.text = "${msg.obj} = $port"
+                    9-> viewBinding.ipport.text = "${msg.obj}"
                     11->Toast.makeText(this@MainActivity, "서버에 접속하였습니다.", Toast.LENGTH_SHORT).show()
                     12->Toast.makeText(this@MainActivity, "메시지 전송에 실패하였습니다.", Toast.LENGTH_SHORT).show()
                     13->Toast.makeText(this@MainActivity, "클라이언트와 연결되었습니다.",Toast.LENGTH_SHORT).show()
@@ -211,7 +337,7 @@ class MainActivity : AppCompatActivity() {
                 while(enumIpAddr.hasMoreElements()){
                     val inetAddress = enumIpAddr.nextElement()
                     if(!inetAddress.isLoopbackAddress && inetAddress is Inet4Address){
-                        ip = inetAddress.hostAddress!!.toString()
+                        ip = inetAddress.hostAddress.toString()
                         breakLoop = true
                         break
                     }
@@ -275,6 +401,11 @@ class MainActivity : AppCompatActivity() {
         val a24n = (App.prefs.a24n).toFloat()/6.toFloat()*100
         valueList.add(BarEntry(2f, a24))
         valueList2.add(BarEntry(1f, a24n))
+
+        var ndata = App.prefs.a11n+ App.prefs.a12n+ App.prefs.a13n+ App.prefs.a14n+ App.prefs.a21n+ App.prefs.a22n+ App.prefs.a23n+ App.prefs.a24n
+        viewBinding.dDay3.text = "새영혼 달성률:${(ndata.toFloat()/48.toFloat()*100).toInt()}%"
+        var ndata2 = App.prefs.a11+ App.prefs.a12+ App.prefs.a13+ App.prefs.a14+ App.prefs.a21+ App.prefs.a22+ App.prefs.a23+ App.prefs.a24
+        viewBinding.dDay4.text = "기존성도 달성률:${(ndata2.toFloat()/170.toFloat()*100).toInt()}%"
 
         val barDataSet = BarDataSet(valueList, title)
         // 바 색상 설정 (ColorTemplate.LIBERTY_COLORS)
