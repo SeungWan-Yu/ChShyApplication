@@ -16,11 +16,12 @@ class OldSettingActivity : AppCompatActivity() {
         viewBinding.a11c.text = App.prefs.a11.toString()
         viewBinding.a12c.text = App.prefs.a12.toString()
         viewBinding.a13c.text = App.prefs.a13.toString()
-        viewBinding.a14c.text = App.prefs.a14.toString()
         viewBinding.a21c.text = App.prefs.a21.toString()
         viewBinding.a22c.text = App.prefs.a22.toString()
         viewBinding.a23c.text = App.prefs.a23.toString()
-        viewBinding.a24c.text = App.prefs.a24.toString()
+        viewBinding.a31c.text = App.prefs.a31.toString()
+        viewBinding.a32c.text = App.prefs.a32.toString()
+        viewBinding.a33c.text = App.prefs.a33.toString()
 
 
         viewBinding.a11plus1.setOnClickListener {
@@ -74,22 +75,6 @@ class OldSettingActivity : AppCompatActivity() {
             viewBinding.a13c.text = App.prefs.a13.toString()
         }
 
-        viewBinding.a14plus1.setOnClickListener {
-            App.prefs.a14 = App.prefs.a14+1
-            viewBinding.a14c.text = App.prefs.a14.toString()
-        }
-        viewBinding.a14minus1.setOnClickListener {
-            App.prefs.a14 = App.prefs.a14-1
-            viewBinding.a14c.text = App.prefs.a14.toString()
-        }
-        viewBinding.a14plus10.setOnClickListener {
-            App.prefs.a14 = App.prefs.a14+10
-            viewBinding.a14c.text = App.prefs.a14.toString()
-        }
-        viewBinding.a14minus10.setOnClickListener {
-            App.prefs.a14 = App.prefs.a14-10
-            viewBinding.a14c.text = App.prefs.a14.toString()
-        }
 
         viewBinding.a21plus1.setOnClickListener {
             App.prefs.a21 = App.prefs.a21+1
@@ -142,21 +127,55 @@ class OldSettingActivity : AppCompatActivity() {
             viewBinding.a23c.text = App.prefs.a23.toString()
         }
 
-        viewBinding.a24plus1.setOnClickListener {
-            App.prefs.a24 = App.prefs.a24+1
-            viewBinding.a24c.text = App.prefs.a24.toString()
+        viewBinding.a31plus1.setOnClickListener {
+            App.prefs.a31 = App.prefs.a31+1
+            viewBinding.a31c.text = App.prefs.a31.toString()
         }
-        viewBinding.a24minus1.setOnClickListener {
-            App.prefs.a24 = App.prefs.a24-1
-            viewBinding.a24c.text = App.prefs.a24.toString()
+        viewBinding.a31minus1.setOnClickListener {
+            App.prefs.a31 = App.prefs.a31-1
+            viewBinding.a31c.text = App.prefs.a31.toString()
         }
-        viewBinding.a24plus10.setOnClickListener {
-            App.prefs.a24 = App.prefs.a24+10
-            viewBinding.a24c.text = App.prefs.a24.toString()
+        viewBinding.a31plus10.setOnClickListener {
+            App.prefs.a31 = App.prefs.a31+10
+            viewBinding.a31c.text = App.prefs.a31.toString()
         }
-        viewBinding.a24minus10.setOnClickListener {
-            App.prefs.a24 = App.prefs.a24-10
-            viewBinding.a24c.text = App.prefs.a24.toString()
+        viewBinding.a31minus10.setOnClickListener {
+            App.prefs.a31 = App.prefs.a31-10
+            viewBinding.a31c.text = App.prefs.a31.toString()
+        }
+
+        viewBinding.a32plus1.setOnClickListener {
+            App.prefs.a32 = App.prefs.a32+1
+            viewBinding.a32c.text = App.prefs.a32.toString()
+        }
+        viewBinding.a32minus1.setOnClickListener {
+            App.prefs.a32 = App.prefs.a32-1
+            viewBinding.a32c.text = App.prefs.a32.toString()
+        }
+        viewBinding.a32plus10.setOnClickListener {
+            App.prefs.a32 = App.prefs.a32+10
+            viewBinding.a32c.text = App.prefs.a32.toString()
+        }
+        viewBinding.a32minus10.setOnClickListener {
+            App.prefs.a32 = App.prefs.a32-10
+            viewBinding.a32c.text = App.prefs.a32.toString()
+        }
+
+        viewBinding.a33plus1.setOnClickListener {
+            App.prefs.a33 = App.prefs.a33+1
+            viewBinding.a33c.text = App.prefs.a33.toString()
+        }
+        viewBinding.a33minus1.setOnClickListener {
+            App.prefs.a33 = App.prefs.a33-1
+            viewBinding.a33c.text = App.prefs.a33.toString()
+        }
+        viewBinding.a33plus10.setOnClickListener {
+            App.prefs.a33 = App.prefs.a33+10
+            viewBinding.a33c.text = App.prefs.a33.toString()
+        }
+        viewBinding.a33minus10.setOnClickListener {
+            App.prefs.a33 = App.prefs.a33-10
+            viewBinding.a33c.text = App.prefs.a33.toString()
         }
     }
 }

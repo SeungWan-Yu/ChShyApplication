@@ -49,14 +49,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getcount() {
-        viewBinding.ta11.text = "성도 [접수:${App.prefs.a11}명, 목표:24명] / 새영혼 [접수:${App.prefs.a11n}명]"
-        viewBinding.ta12.text = "성도 [접수:${App.prefs.a12}명, 목표:16명] / 새영혼 [접수:${App.prefs.a12n}명]"
+        viewBinding.ta11.text = "성도 [접수:${App.prefs.a11}명, 목표:18명] / 새영혼 [접수:${App.prefs.a11n}명]"
+        viewBinding.ta12.text = "성도 [접수:${App.prefs.a12}명, 목표:14명] / 새영혼 [접수:${App.prefs.a12n}명]"
         viewBinding.ta13.text = "성도 [접수:${App.prefs.a13}명, 목표:17명] / 새영혼 [접수:${App.prefs.a13n}명]"
-        viewBinding.ta14.text = "성도 [접수:${App.prefs.a14}명, 목표:28명] / 새영혼 [접수:${App.prefs.a14n}명]"
-        viewBinding.ta21.text = "성도 [접수:${App.prefs.a21}명, 목표:19명] / 새영혼 [접수:${App.prefs.a21n}명]"
-        viewBinding.ta22.text = "성도 [접수:${App.prefs.a22}명, 목표:27명] / 새영혼 [접수:${App.prefs.a22n}명]"
-        viewBinding.ta23.text = "성도 [접수:${App.prefs.a23}명, 목표:17명] / 새영혼 [접수:${App.prefs.a23n}명]"
-        viewBinding.ta24.text = "성도 [접수:${App.prefs.a24}명, 목표:22명] / 새영혼 [접수:${App.prefs.a24n}명]"
+        viewBinding.ta21.text = "성도 [접수:${App.prefs.a21}명, 목표:17명] / 새영혼 [접수:${App.prefs.a21n}명]"
+        viewBinding.ta22.text = "성도 [접수:${App.prefs.a22}명, 목표:19명] / 새영혼 [접수:${App.prefs.a22n}명]"
+        viewBinding.ta23.text = "성도 [접수:${App.prefs.a23}명, 목표:21명] / 새영혼 [접수:${App.prefs.a23n}명]"
+        viewBinding.ta31.text = "성도 [접수:${App.prefs.a31}명, 목표:24명] / 새영혼 [접수:${App.prefs.a31n}명]"
+        viewBinding.ta32.text = "성도 [접수:${App.prefs.a32}명, 목표:17명] / 새영혼 [접수:${App.prefs.a32n}명]"
+        viewBinding.ta33.text = "성도 [접수:${App.prefs.a33}명, 목표:22명] / 새영혼 [접수:${App.prefs.a33n}명]"
     }
 
 
@@ -92,12 +93,12 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        viewBinding.textView21.setOnClickListener {
+        viewBinding.textView10.setOnClickListener {
             App.prefs.percent += 10f
             initBarChart(viewBinding.chart)
             getchart(viewBinding.chart)
         }
-        viewBinding.textView21.setOnLongClickListener {
+        viewBinding.textView10.setOnLongClickListener {
             App.prefs.percent = 110f
             initBarChart(viewBinding.chart)
             getchart(viewBinding.chart)
@@ -108,8 +109,8 @@ class MainActivity : AppCompatActivity() {
     val dateFormat = SimpleDateFormat("yyyyMMdd")
 
     val startDate = dateFormat.parse("20200425").time
-    val endDate = dateFormat.parse("20230721").time
-        val endDate2 = dateFormat.parse("20230821").time
+    val endDate = dateFormat.parse("20240815").time
+        val endDate2 = dateFormat.parse("20240811").time
     val today = Calendar.getInstance().apply {
         set(Calendar.HOUR_OF_DAY, 0)
         set(Calendar.MINUTE, 0)
@@ -119,6 +120,8 @@ class MainActivity : AppCompatActivity() {
 
         if ((endDate - today) / (24 * 60 * 60 * 1000) < 0){
             viewBinding.dDay.text = "2차 수양회 D+${0-(endDate - today) / (24 * 60 * 60 * 1000)}"
+        }else if((endDate - today) / (24 * 60 * 60 * 1000) == 0L){
+            viewBinding.dDay2.text = "2차 수양회 D-day!!"
         }else{
             viewBinding.dDay.text = "2차 수양회 D-${(endDate - today) / (24 * 60 * 60 * 1000)}"
         }
@@ -160,12 +163,6 @@ class MainActivity : AppCompatActivity() {
                             "m13" -> {
                                 App.prefs.a13 = App.prefs.a13 - 1
                             }
-                            "p14" -> {
-                                App.prefs.a14 = App.prefs.a14 + 1
-                            }
-                            "m14" -> {
-                                App.prefs.a14 = App.prefs.a14 - 1
-                            }
                             "p21" -> {
                                 App.prefs.a21 = App.prefs.a21 + 1
                             }
@@ -184,12 +181,28 @@ class MainActivity : AppCompatActivity() {
                             "m23" -> {
                                 App.prefs.a23 = App.prefs.a23 - 1
                             }
-                            "p24" -> {
-                                App.prefs.a24 = App.prefs.a24 + 1
+                            "p31" -> {
+                                App.prefs.a31 = App.prefs.a31 + 1
                             }
-                            "m24"-> {
-                                App.prefs.a24 = App.prefs.a24 - 1
+                            "m31"-> {
+                                App.prefs.a31 = App.prefs.a31 - 1
                             }
+                            "p32" -> {
+                                App.prefs.a32 = App.prefs.a32 + 1
+                            }
+                            "m32" -> {
+                                App.prefs.a32 = App.prefs.a32 - 1
+                            }
+                            "p33" -> {
+                                App.prefs.a33 = App.prefs.a33 + 1
+                            }
+                            "m33" -> {
+                                App.prefs.a33 = App.prefs.a33 - 1
+                            }
+
+
+
+
                             "p11n" -> {
                                 App.prefs.a11n = App.prefs.a11n + 1
                             }
@@ -207,12 +220,6 @@ class MainActivity : AppCompatActivity() {
                             }
                             "m13n" -> {
                                 App.prefs.a13n = App.prefs.a13n - 1
-                            }
-                            "p14n" -> {
-                                App.prefs.a14n = App.prefs.a14n + 1
-                            }
-                            "m14n" -> {
-                                App.prefs.a14n = App.prefs.a14n - 1
                             }
                             "p21n" -> {
                                 App.prefs.a21n = App.prefs.a21n + 1
@@ -232,11 +239,23 @@ class MainActivity : AppCompatActivity() {
                             "m23n" -> {
                                 App.prefs.a23n = App.prefs.a23n - 1
                             }
-                            "p24n" -> {
-                                App.prefs.a24n = App.prefs.a24n + 1
+                            "p31n" -> {
+                                App.prefs.a31n = App.prefs.a31n + 1
                             }
-                            "m24n"-> {
-                                App.prefs.a24n = App.prefs.a24n - 1
+                            "m31n"-> {
+                                App.prefs.a31n = App.prefs.a31n - 1
+                            }
+                            "p32n" -> {
+                                App.prefs.a32n = App.prefs.a32n + 1
+                            }
+                            "m32n" -> {
+                                App.prefs.a32n = App.prefs.a32n - 1
+                            }
+                            "p33n" -> {
+                                App.prefs.a33n = App.prefs.a33n + 1
+                            }
+                            "m33n" -> {
+                                App.prefs.a33n = App.prefs.a33n - 1
                             }
                             "dday" -> {
                                 viewBinding.dDay.text =
@@ -362,50 +381,56 @@ class MainActivity : AppCompatActivity() {
         val valueList2 = ArrayList<BarEntry>()
         val title = ""
         
-        val a11 = (App.prefs.a11).toFloat()/24.toFloat()*100
-        val a11n = (App.prefs.a11n).toFloat()/6.toFloat()*100
-        valueList.add(BarEntry(23f, a11))
-        valueList2.add(BarEntry(22f, a11n))
+        val a11 = (App.prefs.a11).toFloat()/18.toFloat()*100
+        val a11n = (App.prefs.a11n).toFloat()/7.toFloat()*100
+        valueList.add(BarEntry(26f, a11))
+        valueList2.add(BarEntry(25f, a11n))
 
-        val a12 = (App.prefs.a12).toFloat()/16.toFloat()*100
-        val a12n = (App.prefs.a12n).toFloat()/6.toFloat()*100
-        valueList.add(BarEntry(20f, a12))
-        valueList2.add(BarEntry(19f, a12n))
+        val a12 = (App.prefs.a12).toFloat()/14.toFloat()*100
+        val a12n = (App.prefs.a12n).toFloat()/7.toFloat()*100
+        valueList.add(BarEntry(23f, a12))
+        valueList2.add(BarEntry(22f, a12n))
 
         val a13 = (App.prefs.a13).toFloat()/17.toFloat()*100
-        val a13n = (App.prefs.a13n).toFloat()/6.toFloat()*100
-        valueList.add(BarEntry(17f, a13))
-        valueList2.add(BarEntry(16f, a13n))
+        val a13n = (App.prefs.a13n).toFloat()/7.toFloat()*100
+        valueList.add(BarEntry(20f, a13))
+        valueList2.add(BarEntry(19f, a13n))
 
-        val a14 = (App.prefs.a14).toFloat()/28.toFloat()*100
-        val a14n = (App.prefs.a14n).toFloat()/6.toFloat()*100
-        valueList.add(BarEntry(14f, a14))
-        valueList2.add(BarEntry(13f, a14n))
 
-        val a21 = (App.prefs.a21).toFloat()/19.toFloat()*100
-        val a21n = (App.prefs.a21n).toFloat()/6.toFloat()*100
-        valueList.add(BarEntry(11f, a21))
-        valueList2.add(BarEntry(10f, a21n))
+        val a21 = (App.prefs.a21).toFloat()/17.toFloat()*100
+        val a21n = (App.prefs.a21n).toFloat()/7.toFloat()*100
+        valueList.add(BarEntry(17f, a21))
+        valueList2.add(BarEntry(16f, a21n))
 
-        val a22 = (App.prefs.a22).toFloat()/27.toFloat()*100
-        val a22n = (App.prefs.a22n).toFloat()/6.toFloat()*100
-        valueList.add(BarEntry(8f, a22))
-        valueList2.add(BarEntry(7f, a22n))
+        val a22 = (App.prefs.a22).toFloat()/19.toFloat()*100
+        val a22n = (App.prefs.a22n).toFloat()/7.toFloat()*100
+        valueList.add(BarEntry(14f, a22))
+        valueList2.add(BarEntry(13f, a22n))
 
-        val a23 = (App.prefs.a23).toFloat()/17.toFloat()*100
-        val a23n = (App.prefs.a23n).toFloat()/6.toFloat()*100
-        valueList.add(BarEntry(5f, a23))
-        valueList2.add(BarEntry(4f, a23n))
+        val a23 = (App.prefs.a23).toFloat()/21.toFloat()*100
+        val a23n = (App.prefs.a23n).toFloat()/7.toFloat()*100
+        valueList.add(BarEntry(11f, a23))
+        valueList2.add(BarEntry(10f, a23n))
 
-        val a24 = (App.prefs.a24).toFloat()/22.toFloat()*100
-        val a24n = (App.prefs.a24n).toFloat()/6.toFloat()*100
-        valueList.add(BarEntry(2f, a24))
-        valueList2.add(BarEntry(1f, a24n))
+        val a31 = (App.prefs.a31).toFloat()/24.toFloat()*100
+        val a31n = (App.prefs.a31n).toFloat()/7.toFloat()*100
+        valueList.add(BarEntry(8f, a31))
+        valueList2.add(BarEntry(7f, a31n))
 
-        var ndata = App.prefs.a11n+ App.prefs.a12n+ App.prefs.a13n+ App.prefs.a14n+ App.prefs.a21n+ App.prefs.a22n+ App.prefs.a23n+ App.prefs.a24n
-        viewBinding.dDay3.text = "새영혼 달성률:${(ndata.toFloat()/48.toFloat()*100).toInt()}%"
-        var ndata2 = App.prefs.a11+ App.prefs.a12+ App.prefs.a13+ App.prefs.a14+ App.prefs.a21+ App.prefs.a22+ App.prefs.a23+ App.prefs.a24
-        viewBinding.dDay4.text = "기존성도 달성률:${(ndata2.toFloat()/170.toFloat()*100).toInt()}%"
+        val a32 = (App.prefs.a32).toFloat()/17.toFloat()*100
+        val a32n = (App.prefs.a32n).toFloat()/7.toFloat()*100
+        valueList.add(BarEntry(5f, a32))
+        valueList2.add(BarEntry(4f, a32n))
+
+        val a33 = (App.prefs.a33).toFloat()/22.toFloat()*100
+        val a33n = (App.prefs.a33n).toFloat()/7.toFloat()*100
+        valueList.add(BarEntry(2f, a33))
+        valueList2.add(BarEntry(1f, a33n))
+
+        var ndata = App.prefs.a11n+ App.prefs.a12n+ App.prefs.a13n+ App.prefs.a21n+ App.prefs.a22n+ App.prefs.a23n+ App.prefs.a31n+ App.prefs.a32n+ App.prefs.a33n
+        viewBinding.dDay3.text = "새영혼 달성률:${(ndata.toFloat()/63.toFloat()*100).toInt()}%"
+        var ndata2 = App.prefs.a11+ App.prefs.a12+ App.prefs.a13+ App.prefs.a21+ App.prefs.a22+ App.prefs.a23+ App.prefs.a31+ App.prefs.a32+ App.prefs.a33
+        viewBinding.dDay4.text = "기존성도 달성률:${(ndata2.toFloat()/169.toFloat()*100).toInt()}%"
 
         val barDataSet = BarDataSet(valueList, title)
         // 바 색상 설정 (ColorTemplate.LIBERTY_COLORS)

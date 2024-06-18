@@ -26,12 +26,6 @@ class MySharedPreferences(context: Context)  {
     var a13n: Int
         get() = prefs.getInt("a13n", 0)
         set(value) = prefs.edit().putInt("a13n", value).apply()
-    var a14: Int
-        get() = prefs.getInt("a14", 0)
-        set(value) = prefs.edit().putInt("a14", value).apply()
-    var a14n: Int
-        get() = prefs.getInt("a14n", 0)
-        set(value) = prefs.edit().putInt("a14n", value).apply()
     var a21: Int
         get() = prefs.getInt("a21", 0)
         set(value) = prefs.edit().putInt("a21", value).apply()
@@ -50,12 +44,24 @@ class MySharedPreferences(context: Context)  {
     var a23n: Int
         get() = prefs.getInt("a23n", 0)
         set(value) = prefs.edit().putInt("a23n", value).apply()
-    var a24: Int
-        get() = prefs.getInt("a24", 0)
-        set(value) = prefs.edit().putInt("a24", value).apply()
-    var a24n: Int
-        get() = prefs.getInt("a24n", 0)
-        set(value) = prefs.edit().putInt("a24n", value).apply()
+    var a31: Int
+        get() = prefs.getInt("a31", 0)
+        set(value) = prefs.edit().putInt("a31", value).apply()
+    var a31n: Int
+        get() = prefs.getInt("a31n", 0)
+        set(value) = prefs.edit().putInt("a31n", value).apply()
+    var a32: Int
+        get() = prefs.getInt("a32", 0)
+        set(value) = prefs.edit().putInt("a32", value).apply()
+    var a32n: Int
+        get() = prefs.getInt("a32n", 0)
+        set(value) = prefs.edit().putInt("a32n", value).apply()
+    var a33: Int
+        get() = prefs.getInt("a33", 0)
+        set(value) = prefs.edit().putInt("a33", value).apply()
+    var a33n: Int
+        get() = prefs.getInt("a33n", 0)
+        set(value) = prefs.edit().putInt("a33n", value).apply()
 
     var percent: Float
         get() = prefs.getFloat("percent", 110f)
