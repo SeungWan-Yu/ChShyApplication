@@ -50,15 +50,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getcount() {
-        viewBinding.ta11.text = "성도 [접수:${App.prefs.a11}명, 목표:18명] / 새영혼 [접수:${App.prefs.a11n}명]"
-        viewBinding.ta12.text = "성도 [접수:${App.prefs.a12}명, 목표:14명] / 새영혼 [접수:${App.prefs.a12n}명]"
-        viewBinding.ta13.text = "성도 [접수:${App.prefs.a13}명, 목표:17명] / 새영혼 [접수:${App.prefs.a13n}명]"
-        viewBinding.ta21.text = "성도 [접수:${App.prefs.a21}명, 목표:17명] / 새영혼 [접수:${App.prefs.a21n}명]"
-        viewBinding.ta22.text = "성도 [접수:${App.prefs.a22}명, 목표:19명] / 새영혼 [접수:${App.prefs.a22n}명]"
-        viewBinding.ta23.text = "성도 [접수:${App.prefs.a23}명, 목표:21명] / 새영혼 [접수:${App.prefs.a23n}명]"
-        viewBinding.ta31.text = "성도 [접수:${App.prefs.a31}명, 목표:24명] / 새영혼 [접수:${App.prefs.a31n}명]"
-        viewBinding.ta32.text = "성도 [접수:${App.prefs.a32}명, 목표:17명] / 새영혼 [접수:${App.prefs.a32n}명]"
-        viewBinding.ta33.text = "성도 [접수:${App.prefs.a33}명, 목표:22명] / 새영혼 [접수:${App.prefs.a33n}명]"
+        viewBinding.ta11.text = "성도 [접수:${App.prefs.a11}명, 목표:18명]\n새영혼 [접수:${App.prefs.a11n}명]"
+        viewBinding.ta12.text = "성도 [접수:${App.prefs.a12}명, 목표:14명]\n새영혼 [접수:${App.prefs.a12n}명]"
+        viewBinding.ta13.text = "성도 [접수:${App.prefs.a13}명, 목표:17명]\n새영혼 [접수:${App.prefs.a13n}명]"
+        viewBinding.ta21.text = "성도 [접수:${App.prefs.a21}명, 목표:17명]\n새영혼 [접수:${App.prefs.a21n}명]"
+        viewBinding.ta22.text = "성도 [접수:${App.prefs.a22}명, 목표:19명]\n새영혼 [접수:${App.prefs.a22n}명]"
+        viewBinding.ta23.text = "성도 [접수:${App.prefs.a23}명, 목표:21명]\n새영혼 [접수:${App.prefs.a23n}명]"
+        viewBinding.ta31.text = "성도 [접수:${App.prefs.a31}명, 목표:24명]\n새영혼 [접수:${App.prefs.a31n}명]"
+        viewBinding.ta32.text = "성도 [접수:${App.prefs.a32}명, 목표:17명]\n새영혼 [접수:${App.prefs.a32n}명]"
+        viewBinding.ta33.text = "성도 [접수:${App.prefs.a33}명, 목표:22명]\n새영혼 [접수:${App.prefs.a33n}명]"
     }
 
 
@@ -69,6 +69,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
+
+        viewBinding.chartview.bringToFront()
 
         server.close()
         socket.close()
@@ -108,33 +110,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-    val dateFormat = SimpleDateFormat("yyyyMMdd")
-
-    val startDate = dateFormat.parse("20200425").time
-    val endDate = dateFormat.parse("20240815").time
-        val endDate2 = dateFormat.parse("20240811").time
-    val today = Calendar.getInstance().apply {
-        set(Calendar.HOUR_OF_DAY, 0)
-        set(Calendar.MINUTE, 0)
-        set(Calendar.SECOND, 0)
-        set(Calendar.MILLISECOND, 0)
-    }.time.time
-
-        if ((endDate - today) / (24 * 60 * 60 * 1000) < 0){
-            viewBinding.dDay.text = "2차 수양회 D+${0-(endDate - today) / (24 * 60 * 60 * 1000)}"
-        }else if((endDate - today) / (24 * 60 * 60 * 1000) == 0L){
-            viewBinding.dDay2.text = "2차 수양회 D-day!!"
-        }else{
-            viewBinding.dDay.text = "2차 수양회 D-${(endDate - today) / (24 * 60 * 60 * 1000)}"
-        }
-        if ((endDate2 - today) / (24 * 60 * 60 * 1000) < 0){
-            viewBinding.dDay2.text = "새영혼 접수 D+${0-(endDate2 - today) / (24 * 60 * 60 * 1000)}"
-        }else if((endDate2 - today) / (24 * 60 * 60 * 1000) == 0L){
-            viewBinding.dDay2.text = "새영혼 접수 D-day!!"
-        }else{
-            viewBinding.dDay2.text = "새영혼 접수 D-${(endDate2 - today) / (24 * 60 * 60 * 1000)}"
-        }
-
+        getDay()
 
 
         //handler
@@ -260,8 +236,8 @@ class MainActivity : AppCompatActivity() {
                                 App.prefs.a33n = App.prefs.a33n - 1
                             }
                             "dday" -> {
-                                viewBinding.dDay.text =
-                                    "D-${(endDate - today) / (24 * 60 * 60 * 1000)}"
+//                                viewBinding.dDay.text =
+//                                    "D-${(endDate - today) / (24 * 60 * 60 * 1000)}"
                             }
                         }
                         getchart(viewBinding.chart)
@@ -283,6 +259,43 @@ class MainActivity : AppCompatActivity() {
                     18->Toast.makeText(this@MainActivity, "서버와의 연결이 끊어졌습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+    }
+
+    private fun getDay() {
+        val dateFormat = SimpleDateFormat("yyyyMMdd")
+
+        val startDate = dateFormat.parse("20200425").time
+        val endDate = dateFormat.parse("20240815").time //수양회
+        val endDate2 = dateFormat.parse("20240811").time //새영혼
+        val endDate3 = dateFormat.parse("20240707").time //기존성도
+        val today = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, 0)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }.time.time
+
+        if ((endDate - today) / (24 * 60 * 60 * 1000) < 0){
+            viewBinding.dDay1.text = "7차 수양회 D+${0-(endDate - today) / (24 * 60 * 60 * 1000)}"
+        }else if((endDate - today) / (24 * 60 * 60 * 1000) == 0L){
+            viewBinding.dDay1.text = "7차 수양회 D-day!!"
+        }else{
+            viewBinding.dDay1.text = "7차 수양회 D-${(endDate - today) / (24 * 60 * 60 * 1000)}"
+        }
+        if ((endDate2 - today) / (24 * 60 * 60 * 1000) < 0){
+            viewBinding.dDay2.text = "새영혼 접수 D+${0-(endDate2 - today) / (24 * 60 * 60 * 1000)}"
+        }else if((endDate2 - today) / (24 * 60 * 60 * 1000) == 0L){
+            viewBinding.dDay2.text = "새영혼 접수 D-day!!"
+        }else{
+            viewBinding.dDay2.text = "새영혼 접수 D-${(endDate2 - today) / (24 * 60 * 60 * 1000)}"
+        }
+        if ((endDate3 - today) / (24 * 60 * 60 * 1000) < 0){
+            viewBinding.dDay3.text = "기존성도 접수 D+${0-(endDate3 - today) / (24 * 60 * 60 * 1000)}"
+        }else if((endDate3 - today) / (24 * 60 * 60 * 1000) == 0L){
+            viewBinding.dDay3.text = "기존성도 접수 D-day!!"
+        }else{
+            viewBinding.dDay3.text = "기존성도 접수 D-${(endDate3 - today) / (24 * 60 * 60 * 1000)}"
         }
     }
 
@@ -385,59 +398,59 @@ class MainActivity : AppCompatActivity() {
         
         val a11 = (App.prefs.a11).toFloat()/18.toFloat()*100
         val a11n = (App.prefs.a11n).toFloat()/7.toFloat()*100
-        valueList.add(BarEntry(26f, a11))
-        valueList2.add(BarEntry(25f, a11n))
+        valueList.add(BarEntry(17f, a11))
+        valueList2.add(BarEntry(16f, a11n))
 
         val a12 = (App.prefs.a12).toFloat()/14.toFloat()*100
         val a12n = (App.prefs.a12n).toFloat()/7.toFloat()*100
-        valueList.add(BarEntry(23f, a12))
-        valueList2.add(BarEntry(22f, a12n))
+        valueList.add(BarEntry(15f, a12))
+        valueList2.add(BarEntry(14f, a12n))
 
         val a13 = (App.prefs.a13).toFloat()/17.toFloat()*100
         val a13n = (App.prefs.a13n).toFloat()/7.toFloat()*100
-        valueList.add(BarEntry(20f, a13))
-        valueList2.add(BarEntry(19f, a13n))
+        valueList.add(BarEntry(13f, a13))
+        valueList2.add(BarEntry(12f, a13n))
 
 
         val a21 = (App.prefs.a21).toFloat()/17.toFloat()*100
         val a21n = (App.prefs.a21n).toFloat()/7.toFloat()*100
-        valueList.add(BarEntry(17f, a21))
-        valueList2.add(BarEntry(16f, a21n))
+        valueList.add(BarEntry(11f, a21))
+        valueList2.add(BarEntry(10f, a21n))
 
         val a22 = (App.prefs.a22).toFloat()/19.toFloat()*100
         val a22n = (App.prefs.a22n).toFloat()/7.toFloat()*100
-        valueList.add(BarEntry(14f, a22))
-        valueList2.add(BarEntry(13f, a22n))
+        valueList.add(BarEntry(9f, a22))
+        valueList2.add(BarEntry(8f, a22n))
 
         val a23 = (App.prefs.a23).toFloat()/21.toFloat()*100
         val a23n = (App.prefs.a23n).toFloat()/7.toFloat()*100
-        valueList.add(BarEntry(11f, a23))
-        valueList2.add(BarEntry(10f, a23n))
+        valueList.add(BarEntry(7f, a23))
+        valueList2.add(BarEntry(6f, a23n))
 
         val a31 = (App.prefs.a31).toFloat()/24.toFloat()*100
         val a31n = (App.prefs.a31n).toFloat()/7.toFloat()*100
-        valueList.add(BarEntry(8f, a31))
-        valueList2.add(BarEntry(7f, a31n))
+        valueList.add(BarEntry(5f, a31))
+        valueList2.add(BarEntry(4f, a31n))
 
         val a32 = (App.prefs.a32).toFloat()/17.toFloat()*100
         val a32n = (App.prefs.a32n).toFloat()/7.toFloat()*100
-        valueList.add(BarEntry(5f, a32))
-        valueList2.add(BarEntry(4f, a32n))
+        valueList.add(BarEntry(3f, a32))
+        valueList2.add(BarEntry(2f, a32n))
 
         val a33 = (App.prefs.a33).toFloat()/22.toFloat()*100
         val a33n = (App.prefs.a33n).toFloat()/7.toFloat()*100
-        valueList.add(BarEntry(2f, a33))
-        valueList2.add(BarEntry(1f, a33n))
+        valueList.add(BarEntry(1f, a33))
+        valueList2.add(BarEntry(0f, a33n))
 
         var ndata = App.prefs.a11n+ App.prefs.a12n+ App.prefs.a13n+ App.prefs.a21n+ App.prefs.a22n+ App.prefs.a23n+ App.prefs.a31n+ App.prefs.a32n+ App.prefs.a33n
-        viewBinding.dDay3.text = "새영혼 달성률:${(ndata.toFloat()/63.toFloat()*100).toInt()}%"
+        viewBinding.dDay4.text = "새영혼 달성률:${(ndata.toFloat()/63.toFloat()*100).toInt()}%"
         var ndata2 = App.prefs.a11+ App.prefs.a12+ App.prefs.a13+ App.prefs.a21+ App.prefs.a22+ App.prefs.a23+ App.prefs.a31+ App.prefs.a32+ App.prefs.a33
-        viewBinding.dDay4.text = "기존성도 달성률:${(ndata2.toFloat()/169.toFloat()*100).toInt()}%"
+        viewBinding.dDay5.text = "기존성도 달성률:${(ndata2.toFloat()/169.toFloat()*100).toInt()}%"
 
         val barDataSet = BarDataSet(valueList, title)
         // 바 색상 설정 (ColorTemplate.LIBERTY_COLORS)
         barDataSet.setColors(
-            Color.rgb(106, 117, 214)
+            Color.rgb(58, 163, 233)
         )
         barDataSet.valueFormatter = object : ValueFormatter() {
             override fun getFormattedValue(value: Float): String {
@@ -448,7 +461,7 @@ class MainActivity : AppCompatActivity() {
         val barDataSet2 = BarDataSet(valueList2, title)
         // 바 색상 설정 (ColorTemplate.LIBERTY_COLORS)
         barDataSet2.setColors(
-            Color.rgb(255, 82, 82)
+            Color.rgb(52, 25, 133)
         )
 
         barDataSet2.valueFormatter = object : ValueFormatter() {
