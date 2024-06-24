@@ -25,6 +25,7 @@
             android:textColor="#341985"
             android:textSize="40sp"
             android:textStyle="bold"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/textView10"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView10" />
@@ -56,17 +57,29 @@
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <TextView
+            android:id="@+id/update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:text="달성율(%)"
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/update" />
 
         <TextView
             android:id="@+id/textView"
@@ -77,7 +90,7 @@
             android:gravity="center"
             android:text="2024 하계수양회\n구역별 접수현황"
             android:textColor="#28126E"
-            android:textSize="60sp"
+            android:textSize="50sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -87,9 +100,10 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="&quot;사람하는 사람과 함께 수양회로!&quot;"
+            android:text="&quot;사랑하는 사람과 함께 수양회로!&quot;"
             android:textColor="#000000"
             android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -112,7 +126,7 @@
                 android:layout_height="42dp"
                 android:layout_gravity="center"
                 android:layout_margin="4dp"
-                android:layout_weight="2"
+                android:layout_weight="1.5"
                 android:background="#3AA8E9"
                 android:contentDescription="@null" />
 
@@ -122,11 +136,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="4dp"
-                android:layout_weight="2"
+                android:layout_weight="2.5"
                 android:fontFamily="@font/bmjua_ttf"
                 android:text="기존성도"
                 android:textColor="#000000"
-                android:textSize="30sp"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
             <ImageView
@@ -135,7 +149,7 @@
                 android:layout_height="42dp"
                 android:layout_gravity="center"
                 android:layout_margin="4dp"
-                android:layout_weight="2"
+                android:layout_weight="1.5"
                 android:background="#341985"
                 android:contentDescription="@null" />
 
@@ -145,11 +159,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="4dp"
-                android:layout_weight="4"
+                android:layout_weight="4.5"
                 android:fontFamily="@font/bmjua_ttf"
                 android:text="새영혼(목표:7명)"
                 android:textColor="#000000"
-                android:textSize="30sp"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -176,12 +190,11 @@
 
                 <LinearLayout
                     android:id="@+id/linearLayout"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
-                    android:layout_weight="1.5"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -194,7 +207,7 @@
                         android:gravity="center"
                         android:text="11구역"
                         android:textColor="#38247A"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -206,7 +219,7 @@
                         android:gravity="center"
                         android:text="12구역"
                         android:textColor="#38247A"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -218,7 +231,7 @@
                         android:gravity="center"
                         android:text="13구역"
                         android:textColor="#38247A"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -230,7 +243,7 @@
                         android:gravity="center"
                         android:text="21구역"
                         android:textColor="#38247A"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -242,7 +255,7 @@
                         android:gravity="center"
                         android:text="22구역"
                         android:textColor="#38247A"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -254,7 +267,7 @@
                         android:gravity="center"
                         android:text="23구역"
                         android:textColor="#38247A"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -266,7 +279,7 @@
                         android:gravity="center"
                         android:text="31구역"
                         android:textColor="#38247A"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -278,7 +291,7 @@
                         android:gravity="center"
                         android:text="32구역"
                         android:textColor="#38247A"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -290,18 +303,17 @@
                         android:gravity="center"
                         android:text="33구역"
                         android:textColor="#38247A"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/linearLayout3"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
-                    android:layout_weight="3.5"
                     android:orientation="vertical"
                     android:weightSum="9">
 
@@ -407,9 +419,8 @@
 
                 <com.github.mikephil.charting.charts.HorizontalBarChart
                     android:id="@+id/chart"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
 
@@ -520,9 +531,11 @@
             android:gravity="center"
             android:text="디데이"
             android:textColor="#341985"
-            android:textSize="34sp"
+            android:textSize="28sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="0dp" />
 
         <TextView
             android:id="@+id/d_day4"
@@ -533,7 +546,7 @@
             android:gravity="center"
             android:text="새신자 접수"
             android:textColor="#341985"
-            android:textSize="34sp"
+            android:textSize="28sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -541,6 +554,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:layout_weight="0.4">
 
         <TextView
@@ -552,8 +566,9 @@
             android:gravity="center"
             android:text="디데이"
             android:textColor="#3AA8E9"
-            android:textSize="34sp"
+            android:textSize="28sp"
             android:textStyle="bold"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -565,7 +580,7 @@
             android:gravity="center"
             android:text="기존성도 접수"
             android:textColor="#3AA8E9"
-            android:textSize="34sp"
+            android:textSize="28sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

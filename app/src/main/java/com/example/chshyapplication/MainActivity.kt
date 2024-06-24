@@ -29,6 +29,21 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
+    var updatecnt = 0
+    val dateFormat = SimpleDateFormat("yyyyMMdd")
+    val startDate = dateFormat.parse("20200425").time
+    val endDate = dateFormat.parse("20240815").time //수양회
+    val endDate2 = dateFormat.parse("20240811").time //새영혼
+    val endDate3 = dateFormat.parse("20240707").time //기존성도
+    val today = Calendar.getInstance().apply {
+        set(Calendar.HOUR_OF_DAY, 0)
+        set(Calendar.MINUTE, 0)
+        set(Calendar.SECOND, 0)
+        set(Calendar.MILLISECOND, 0)
+    }.time.time
+    val cal = Calendar.getInstance()
+
+
     companion object {
         var socket = Socket()
         var server = ServerSocket()
@@ -47,6 +62,16 @@ class MainActivity : AppCompatActivity() {
         initBarChart(viewBinding.chart)
         getchart(viewBinding.chart)
         getcount()
+        if (updatecnt == 0){
+            updatecnt += 1
+        }else{
+            getupdate()
+        }
+    }
+
+    private fun getupdate() {
+
+        viewBinding.update.text = "${(cal.get(Calendar.MONTH))+1}월 ${cal.get(Calendar.DATE)}일 ${cal.get(Calendar.HOUR_OF_DAY)}시 기준"
     }
 
     private fun getcount() {
@@ -263,18 +288,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getDay() {
-        val dateFormat = SimpleDateFormat("yyyyMMdd")
 
-        val startDate = dateFormat.parse("20200425").time
-        val endDate = dateFormat.parse("20240815").time //수양회
-        val endDate2 = dateFormat.parse("20240811").time //새영혼
-        val endDate3 = dateFormat.parse("20240707").time //기존성도
-        val today = Calendar.getInstance().apply {
-            set(Calendar.HOUR_OF_DAY, 0)
-            set(Calendar.MINUTE, 0)
-            set(Calendar.SECOND, 0)
-            set(Calendar.MILLISECOND, 0)
-        }.time.time
 
         if ((endDate - today) / (24 * 60 * 60 * 1000) < 0){
             viewBinding.dDay1.text = "7차 수양회 D+${0-(endDate - today) / (24 * 60 * 60 * 1000)}"
