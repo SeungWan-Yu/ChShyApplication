@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.chshyapplication.databinding.ActivityNewSettingBinding
 import com.example.chshyapplication.databinding.ActivityOldSettingBinding
+import java.util.Calendar
 
 class NewSettingActivity : AppCompatActivity() {
 
@@ -177,5 +178,11 @@ class NewSettingActivity : AppCompatActivity() {
             App.prefs.a33n = App.prefs.a33n-10
             viewBinding.a33c.text = App.prefs.a33n.toString()
         }
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        val cal = Calendar.getInstance()
+        App.prefs.date = "${(cal.get(Calendar.MONTH))+1}월 ${cal.get(Calendar.DATE)}일 ${cal.get(
+            Calendar.HOUR_OF_DAY)}시 기준"
     }
 }

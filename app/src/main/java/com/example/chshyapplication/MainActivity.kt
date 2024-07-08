@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
+import android.util.Half.toFloat
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     val startDate = dateFormat.parse("20200425").time
     val endDate = dateFormat.parse("20240815").time //수양회
     val endDate2 = dateFormat.parse("20240811").time //새영혼
-    val endDate3 = dateFormat.parse("20240707").time //기존성도
+    val endDate3 = dateFormat.parse("20240714").time //기존성도
     val today = Calendar.getInstance().apply {
         set(Calendar.HOUR_OF_DAY, 0)
         set(Calendar.MINUTE, 0)
@@ -62,28 +63,23 @@ class MainActivity : AppCompatActivity() {
         initBarChart(viewBinding.chart)
         getchart(viewBinding.chart)
         getcount()
-        if (updatecnt == 0){
-            updatecnt += 1
-        }else{
-            getupdate()
-        }
+        getupdate()
     }
 
     private fun getupdate() {
-
-        viewBinding.update.text = "${(cal.get(Calendar.MONTH))+1}월 ${cal.get(Calendar.DATE)}일 ${cal.get(Calendar.HOUR_OF_DAY)}시 기준"
+            viewBinding.update.text = App.prefs.date
     }
 
     private fun getcount() {
-        viewBinding.ta11.text = "성도 [접수:${App.prefs.a11}명, 목표:18명]\n새영혼 [접수:${App.prefs.a11n}명]"
-        viewBinding.ta12.text = "성도 [접수:${App.prefs.a12}명, 목표:14명]\n새영혼 [접수:${App.prefs.a12n}명]"
-        viewBinding.ta13.text = "성도 [접수:${App.prefs.a13}명, 목표:17명]\n새영혼 [접수:${App.prefs.a13n}명]"
-        viewBinding.ta21.text = "성도 [접수:${App.prefs.a21}명, 목표:17명]\n새영혼 [접수:${App.prefs.a21n}명]"
-        viewBinding.ta22.text = "성도 [접수:${App.prefs.a22}명, 목표:19명]\n새영혼 [접수:${App.prefs.a22n}명]"
-        viewBinding.ta23.text = "성도 [접수:${App.prefs.a23}명, 목표:21명]\n새영혼 [접수:${App.prefs.a23n}명]"
-        viewBinding.ta31.text = "성도 [접수:${App.prefs.a31}명, 목표:24명]\n새영혼 [접수:${App.prefs.a31n}명]"
-        viewBinding.ta32.text = "성도 [접수:${App.prefs.a32}명, 목표:17명]\n새영혼 [접수:${App.prefs.a32n}명]"
-        viewBinding.ta33.text = "성도 [접수:${App.prefs.a33}명, 목표:22명]\n새영혼 [접수:${App.prefs.a33n}명]"
+        viewBinding.ta11.text = "성도 [접수:${App.prefs.a11}명, 목표:18명]\n새영혼 [접수:${App.prefs.a11n}명]\n버스 [접수:${App.prefs.a11b}명]"
+        viewBinding.ta12.text = "성도 [접수:${App.prefs.a12}명, 목표:14명]\n새영혼 [접수:${App.prefs.a12n}명]\n버스 [접수:${App.prefs.a12b}명]"
+        viewBinding.ta13.text = "성도 [접수:${App.prefs.a13}명, 목표:17명]\n새영혼 [접수:${App.prefs.a13n}명]\n버스 [접수:${App.prefs.a13b}명]"
+        viewBinding.ta21.text = "성도 [접수:${App.prefs.a21}명, 목표:17명]\n새영혼 [접수:${App.prefs.a21n}명]\n버스 [접수:${App.prefs.a21b}명]"
+        viewBinding.ta22.text = "성도 [접수:${App.prefs.a22}명, 목표:19명]\n새영혼 [접수:${App.prefs.a22n}명]\n버스 [접수:${App.prefs.a22b}명]"
+        viewBinding.ta23.text = "성도 [접수:${App.prefs.a23}명, 목표:21명]\n새영혼 [접수:${App.prefs.a23n}명]\n버스 [접수:${App.prefs.a23b}명]"
+        viewBinding.ta31.text = "성도 [접수:${App.prefs.a31}명, 목표:24명]\n새영혼 [접수:${App.prefs.a31n}명]\n버스 [접수:${App.prefs.a31b}명]"
+        viewBinding.ta32.text = "성도 [접수:${App.prefs.a32}명, 목표:17명]\n새영혼 [접수:${App.prefs.a32n}명]\n버스 [접수:${App.prefs.a32b}명]"
+        viewBinding.ta33.text = "성도 [접수:${App.prefs.a33}명, 목표:22명]\n새영혼 [접수:${App.prefs.a33n}명]\n버스 [접수:${App.prefs.a33b}명]"
     }
 
 
@@ -105,6 +101,9 @@ class MainActivity : AppCompatActivity() {
         }
         viewBinding.textView54.setOnClickListener {
             startActivity(Intent(this,NewSettingActivity::class.java))
+        }
+        viewBinding.tvBus.setOnClickListener {
+            startActivity(Intent(this,BusSettingActivity::class.java))
         }
 
             if(server.isClosed) {
@@ -408,53 +407,72 @@ class MainActivity : AppCompatActivity() {
 
         val valueList = ArrayList<BarEntry>()
         val valueList2 = ArrayList<BarEntry>()
+        val valueList3 = ArrayList<BarEntry>()
         val title = ""
         
         val a11 = (App.prefs.a11).toFloat()/18.toFloat()*100
         val a11n = (App.prefs.a11n).toFloat()/7.toFloat()*100
-        valueList.add(BarEntry(17f, a11))
-        valueList2.add(BarEntry(16f, a11n))
+        val a11b = (App.prefs.a11b).toFloat()/(App.prefs.a11).toFloat()*100
+        valueList.add(BarEntry(26f, a11))
+        valueList2.add(BarEntry(25f, a11n))
+        valueList3.add(BarEntry(24f, a11b))
 
         val a12 = (App.prefs.a12).toFloat()/14.toFloat()*100
         val a12n = (App.prefs.a12n).toFloat()/7.toFloat()*100
-        valueList.add(BarEntry(15f, a12))
-        valueList2.add(BarEntry(14f, a12n))
+        val a12b = (App.prefs.a12b).toFloat()/(App.prefs.a12).toFloat()*100
+        valueList.add(BarEntry(23f, a12))
+        valueList2.add(BarEntry(22f, a12n))
+        valueList3.add(BarEntry(21f, a12b))
 
         val a13 = (App.prefs.a13).toFloat()/17.toFloat()*100
         val a13n = (App.prefs.a13n).toFloat()/7.toFloat()*100
-        valueList.add(BarEntry(13f, a13))
-        valueList2.add(BarEntry(12f, a13n))
+        val a13b = (App.prefs.a13b).toFloat()/(App.prefs.a13).toFloat()*100
+        valueList.add(BarEntry(20f, a13))
+        valueList2.add(BarEntry(19f, a13n))
+        valueList3.add(BarEntry(18f, a13b))
 
 
         val a21 = (App.prefs.a21).toFloat()/17.toFloat()*100
         val a21n = (App.prefs.a21n).toFloat()/7.toFloat()*100
-        valueList.add(BarEntry(11f, a21))
-        valueList2.add(BarEntry(10f, a21n))
+        val a21b = (App.prefs.a21b).toFloat()/(App.prefs.a21).toFloat()*100
+        valueList.add(BarEntry(17f, a21))
+        valueList2.add(BarEntry(16f, a21n))
+        valueList3.add(BarEntry(15f, a21b))
 
         val a22 = (App.prefs.a22).toFloat()/19.toFloat()*100
         val a22n = (App.prefs.a22n).toFloat()/7.toFloat()*100
-        valueList.add(BarEntry(9f, a22))
-        valueList2.add(BarEntry(8f, a22n))
+        val a22b = (App.prefs.a22b).toFloat()/(App.prefs.a22).toFloat()*100
+        valueList.add(BarEntry(14f, a22))
+        valueList2.add(BarEntry(13f, a22n))
+        valueList3.add(BarEntry(12f, a22b))
 
         val a23 = (App.prefs.a23).toFloat()/21.toFloat()*100
         val a23n = (App.prefs.a23n).toFloat()/7.toFloat()*100
-        valueList.add(BarEntry(7f, a23))
-        valueList2.add(BarEntry(6f, a23n))
+        val a23b = (App.prefs.a23b).toFloat()/(App.prefs.a23).toFloat()*100
+        valueList.add(BarEntry(11f, a23))
+        valueList2.add(BarEntry(10f, a23n))
+        valueList3.add(BarEntry(9f, a23b))
 
         val a31 = (App.prefs.a31).toFloat()/24.toFloat()*100
         val a31n = (App.prefs.a31n).toFloat()/7.toFloat()*100
-        valueList.add(BarEntry(5f, a31))
-        valueList2.add(BarEntry(4f, a31n))
+        val a31b = (App.prefs.a31b).toFloat()/(App.prefs.a31).toFloat()*100
+        valueList.add(BarEntry(8f, a31))
+        valueList2.add(BarEntry(7f, a31n))
+        valueList3.add(BarEntry(6f, a31b))
 
         val a32 = (App.prefs.a32).toFloat()/17.toFloat()*100
         val a32n = (App.prefs.a32n).toFloat()/7.toFloat()*100
-        valueList.add(BarEntry(3f, a32))
-        valueList2.add(BarEntry(2f, a32n))
+        val a32b = (App.prefs.a32b).toFloat()/(App.prefs.a32).toFloat()*100
+        valueList.add(BarEntry(5f, a32))
+        valueList2.add(BarEntry(4f, a32n))
+        valueList3.add(BarEntry(3f, a32b))
 
         val a33 = (App.prefs.a33).toFloat()/22.toFloat()*100
         val a33n = (App.prefs.a33n).toFloat()/7.toFloat()*100
-        valueList.add(BarEntry(1f, a33))
-        valueList2.add(BarEntry(0f, a33n))
+        val a33b = (App.prefs.a33b).toFloat()/(App.prefs.a33).toFloat()*100
+        valueList.add(BarEntry(2f, a33))
+        valueList2.add(BarEntry(1f, a33n))
+        valueList3.add(BarEntry(0f, a33b))
 
         var ndata = App.prefs.a11n+ App.prefs.a12n+ App.prefs.a13n+ App.prefs.a21n+ App.prefs.a22n+ App.prefs.a23n+ App.prefs.a31n+ App.prefs.a32n+ App.prefs.a33n
         viewBinding.dDay4.text = "새영혼 달성률:${(ndata.toFloat()/63.toFloat()*100).toInt()}%"
@@ -484,10 +502,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
         barDataSet2.valueTextSize = 24f
-
+        val barDataSet3 = BarDataSet(valueList3, title)
+        // 바 색상 설정 (ColorTemplate.LIBERTY_COLORS)
+        barDataSet3.setColors(
+            Color.rgb(245, 239, 66)
+        )
+        barDataSet3.valueFormatter = object : ValueFormatter() {
+            override fun getFormattedValue(value: Float): String {
+                return value.toInt().toString() + "%"
+            }
+        }
+        barDataSet3.valueTextSize = 24f
         val chartData = BarData()
         chartData.addDataSet(barDataSet)
         chartData.addDataSet(barDataSet2)
+        chartData.addDataSet(barDataSet3)
 
         barChart.data = chartData
         barChart.invalidate()
