@@ -407,7 +407,7 @@ class MainActivity : AppCompatActivity() {
 
         val valueList = ArrayList<BarEntry>()
         val valueList2 = ArrayList<BarEntry>()
-        val valueList3 = ArrayList<BarEntry>()
+//        val valueList3 = ArrayList<BarEntry>()
         val title = ""
         
         val a11 = (App.prefs.a11).toFloat()/17.toFloat()*100
@@ -415,21 +415,21 @@ class MainActivity : AppCompatActivity() {
         val a11b = (App.prefs.a11b).toFloat()/(App.prefs.a11).toFloat()*100
         valueList.add(BarEntry(26f, a11))
         valueList2.add(BarEntry(25f, a11n))
-        valueList3.add(BarEntry(24f, a11b))
+//        valueList3.add(BarEntry(24f, a11b))
 
         val a12 = (App.prefs.a12).toFloat()/16.toFloat()*100
         val a12n = (App.prefs.a12n).toFloat()/8.toFloat()*100
         val a12b = (App.prefs.a12b).toFloat()/(App.prefs.a12).toFloat()*100
         valueList.add(BarEntry(23f, a12))
         valueList2.add(BarEntry(22f, a12n))
-        valueList3.add(BarEntry(21f, a12b))
+//        valueList3.add(BarEntry(21f, a12b))
 
         val a13 = (App.prefs.a13).toFloat()/17.toFloat()*100
         val a13n = (App.prefs.a13n).toFloat()/8.toFloat()*100
         val a13b = (App.prefs.a13b).toFloat()/(App.prefs.a13).toFloat()*100
         valueList.add(BarEntry(20f, a13))
         valueList2.add(BarEntry(19f, a13n))
-        valueList3.add(BarEntry(18f, a13b))
+//        valueList3.add(BarEntry(18f, a13b))
 
 
         val a21 = (App.prefs.a21).toFloat()/18.toFloat()*100
@@ -437,42 +437,42 @@ class MainActivity : AppCompatActivity() {
         val a21b = (App.prefs.a21b).toFloat()/(App.prefs.a21).toFloat()*100
         valueList.add(BarEntry(17f, a21))
         valueList2.add(BarEntry(16f, a21n))
-        valueList3.add(BarEntry(15f, a21b))
+//        valueList3.add(BarEntry(15f, a21b))
 
         val a22 = (App.prefs.a22).toFloat()/16.toFloat()*100
         val a22n = (App.prefs.a22n).toFloat()/8.toFloat()*100
         val a22b = (App.prefs.a22b).toFloat()/(App.prefs.a22).toFloat()*100
         valueList.add(BarEntry(14f, a22))
         valueList2.add(BarEntry(13f, a22n))
-        valueList3.add(BarEntry(12f, a22b))
+//        valueList3.add(BarEntry(12f, a22b))
 
         val a23 = (App.prefs.a23).toFloat()/18.toFloat()*100
         val a23n = (App.prefs.a23n).toFloat()/8.toFloat()*100
         val a23b = (App.prefs.a23b).toFloat()/(App.prefs.a23).toFloat()*100
         valueList.add(BarEntry(11f, a23))
         valueList2.add(BarEntry(10f, a23n))
-        valueList3.add(BarEntry(9f, a23b))
+//        valueList3.add(BarEntry(9f, a23b))
 
         val a31 = (App.prefs.a31).toFloat()/19.toFloat()*100
         val a31n = (App.prefs.a31n).toFloat()/8.toFloat()*100
         val a31b = (App.prefs.a31b).toFloat()/(App.prefs.a31).toFloat()*100
         valueList.add(BarEntry(8f, a31))
         valueList2.add(BarEntry(7f, a31n))
-        valueList3.add(BarEntry(6f, a31b))
+//        valueList3.add(BarEntry(6f, a31b))
 
         val a32 = (App.prefs.a32).toFloat()/15.toFloat()*100
         val a32n = (App.prefs.a32n).toFloat()/8.toFloat()*100
         val a32b = (App.prefs.a32b).toFloat()/(App.prefs.a32).toFloat()*100
         valueList.add(BarEntry(5f, a32))
         valueList2.add(BarEntry(4f, a32n))
-        valueList3.add(BarEntry(3f, a32b))
+//        valueList3.add(BarEntry(3f, a32b))
 
         val a33 = (App.prefs.a33).toFloat()/17.toFloat()*100
         val a33n = (App.prefs.a33n).toFloat()/8.toFloat()*100
         val a33b = (App.prefs.a33b).toFloat()/(App.prefs.a33).toFloat()*100
         valueList.add(BarEntry(2f, a33))
         valueList2.add(BarEntry(1f, a33n))
-        valueList3.add(BarEntry(0f, a33b))
+//        valueList3.add(BarEntry(0f, a33b))
 
         var ndata = App.prefs.a11n+ App.prefs.a12n+ App.prefs.a13n+ App.prefs.a21n+ App.prefs.a22n+ App.prefs.a23n+ App.prefs.a31n+ App.prefs.a32n+ App.prefs.a33n
         viewBinding.dDay4.text = "새영혼 달성률:${(ndata.toFloat()/72.toFloat()*100).toInt()}%"
@@ -489,7 +489,9 @@ class MainActivity : AppCompatActivity() {
                 return value.toInt().toString() + "%"
             }
         }
-        barDataSet.valueTextSize = 24f
+        barDataSet.valueTextSize = 20f
+        barDataSet.valueTextColor=Color.WHITE
+
         val barDataSet2 = BarDataSet(valueList2, title)
         // 바 색상 설정 (ColorTemplate.LIBERTY_COLORS)
         barDataSet2.setColors(
@@ -501,22 +503,23 @@ class MainActivity : AppCompatActivity() {
                 return value.toInt().toString() + "%"
             }
         }
-        barDataSet2.valueTextSize = 24f
-        val barDataSet3 = BarDataSet(valueList3, title)
-        // 바 색상 설정 (ColorTemplate.LIBERTY_COLORS)
-        barDataSet3.setColors(
-            Color.rgb(245, 239, 66)
-        )
-        barDataSet3.valueFormatter = object : ValueFormatter() {
-            override fun getFormattedValue(value: Float): String {
-                return value.toInt().toString() + "%"
-            }
-        }
-        barDataSet3.valueTextSize = 24f
+        barDataSet2.valueTextSize = 20f
+        barDataSet2.valueTextColor=Color.WHITE
+//        val barDataSet3 = BarDataSet(valueList3, title)
+//        // 바 색상 설정 (ColorTemplate.LIBERTY_COLORS)
+//        barDataSet3.setColors(
+//            Color.rgb(245, 239, 66)
+//        )
+//        barDataSet3.valueFormatter = object : ValueFormatter() {
+//            override fun getFormattedValue(value: Float): String {
+//                return value.toInt().toString() + "%"
+//            }
+//        }
+//        barDataSet3.valueTextSize = 24f
         val chartData = BarData()
         chartData.addDataSet(barDataSet)
         chartData.addDataSet(barDataSet2)
-        chartData.addDataSet(barDataSet3)
+//        chartData.addDataSet(barDataSet3)
 
         barChart.data = chartData
         barChart.invalidate()
@@ -529,6 +532,7 @@ class MainActivity : AppCompatActivity() {
         barChart.setDrawBarShadow(false)
         // 차트 테두리 설정 (default = false)
         barChart.setDrawBorders(false)
+        barChart.setDrawValueAboveBar(false)
 
         barChart.legend.isEnabled = false
 
