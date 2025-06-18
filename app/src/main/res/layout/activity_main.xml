@@ -113,12 +113,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:orientation="horizontal"
             android:weightSum="10"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/d_day1">
 
             <ImageView
                 android:id="@+id/imageView11"
@@ -138,10 +137,36 @@
                 android:layout_margin="4dp"
                 android:layout_weight="2"
                 android:fontFamily="@font/bmjua_ttf"
+                android:gravity="center"
                 android:text="기존성도"
                 android:textColor="#000000"
                 android:textSize="24sp"
                 android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="#f5ef42"
+                android:contentDescription="@null"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/tv_bus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/bmjua_ttf"
+                android:text="버스"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:visibility="invisible" />
 
             <ImageView
                 android:id="@+id/img_bus"
@@ -159,37 +184,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="4dp"
-                android:layout_weight="3.5"
+                android:layout_weight="2"
                 android:fontFamily="@font/bmjua_ttf"
-                android:text="새영혼(목표:8명)"
+                android:gravity="center"
+                android:text="새영혼\n(목표:8명)"
                 android:textColor="#000000"
                 android:textSize="24sp"
                 android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/imageView8"
-                android:layout_width="0dp"
-                android:layout_height="42dp"
-                android:layout_gravity="center"
-                android:layout_margin="4dp"
-                android:layout_weight="1"
-                android:background="#f5ef42"
-                android:contentDescription="@null"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/tv_bus"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="4dp"
-                android:layout_weight="1.5"
-                android:fontFamily="@font/bmjua_ttf"
-                android:text="버스"
-                android:textColor="#000000"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -197,10 +198,8 @@
             android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-            app:layout_constraintTop_toBottomOf="@+id/textView10">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
             <LinearLayout
                 android:id="@+id/chartview"
@@ -213,11 +212,156 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="-8dp"
+                    android:layout_weight="4">
+
+                    <LinearLayout
+                        android:id="@+id/lljs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="24dp"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/chart1"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/tvjs1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bmjua_ttf"
+                            android:gravity="center"
+                            android:text="11구역"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvjs2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bmjua_ttf"
+                            android:gravity="center"
+                            android:text="12구역"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvjs3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bmjua_ttf"
+                            android:gravity="center"
+                            android:text="13구역"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvjs4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bmjua_ttf"
+                            android:gravity="center"
+                            android:text="21구역"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvjs5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bmjua_ttf"
+                            android:gravity="center"
+                            android:text="22구역"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvjs6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bmjua_ttf"
+                            android:gravity="center"
+                            android:text="23구역"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvjs7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bmjua_ttf"
+                            android:gravity="center"
+                            android:text="31구역"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvjs8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bmjua_ttf"
+                            android:gravity="center"
+                            android:text="32구역"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvjs9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bmjua_ttf"
+                            android:gravity="center"
+                            android:text="33구역"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/chart1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        tools:layout_editor_absoluteX="829dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <LinearLayout
                     android:id="@+id/linearLayout"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
                     android:layout_weight="2"
@@ -233,7 +377,7 @@
                         android:gravity="center"
                         android:text="11구역"
                         android:textColor="#38247A"
-                        android:textSize="28sp"
+                        android:textSize="34sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -245,7 +389,7 @@
                         android:gravity="center"
                         android:text="12구역"
                         android:textColor="#38247A"
-                        android:textSize="28sp"
+                        android:textSize="34sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -257,7 +401,7 @@
                         android:gravity="center"
                         android:text="13구역"
                         android:textColor="#38247A"
-                        android:textSize="28sp"
+                        android:textSize="34sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -269,7 +413,7 @@
                         android:gravity="center"
                         android:text="21구역"
                         android:textColor="#38247A"
-                        android:textSize="28sp"
+                        android:textSize="34sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -281,7 +425,7 @@
                         android:gravity="center"
                         android:text="22구역"
                         android:textColor="#38247A"
-                        android:textSize="28sp"
+                        android:textSize="34sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -293,7 +437,7 @@
                         android:gravity="center"
                         android:text="23구역"
                         android:textColor="#38247A"
-                        android:textSize="28sp"
+                        android:textSize="34sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -305,7 +449,7 @@
                         android:gravity="center"
                         android:text="31구역"
                         android:textColor="#38247A"
-                        android:textSize="28sp"
+                        android:textSize="34sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -317,7 +461,7 @@
                         android:gravity="center"
                         android:text="32구역"
                         android:textColor="#38247A"
-                        android:textSize="28sp"
+                        android:textSize="34sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -329,7 +473,7 @@
                         android:gravity="center"
                         android:text="33구역"
                         android:textColor="#38247A"
-                        android:textSize="28sp"
+                        android:textSize="34sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -444,13 +588,149 @@
                         android:textStyle="bold" />
                 </LinearLayout>
 
-                <com.github.mikephil.charting.charts.HorizontalBarChart
-                    android:id="@+id/chart"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="8" />
+                    android:layout_marginLeft="-8dp"
+                    android:layout_weight="4">
+
+                    <LinearLayout
+                        android:id="@+id/lljsn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="24dp"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/chart2"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/tvjsn1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bmjua_ttf"
+                            android:gravity="center"
+                            android:text="11구역"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvjsn2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bmjua_ttf"
+                            android:gravity="center"
+                            android:text="12구역"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvjsn3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bmjua_ttf"
+                            android:gravity="center"
+                            android:text="13구역"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvjsn4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bmjua_ttf"
+                            android:gravity="center"
+                            android:text="21구역"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvjsn5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bmjua_ttf"
+                            android:gravity="center"
+                            android:text="22구역"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvjsn6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bmjua_ttf"
+                            android:gravity="center"
+                            android:text="23구역"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvjsn7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bmjua_ttf"
+                            android:gravity="center"
+                            android:text="31구역"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvjsn8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bmjua_ttf"
+                            android:gravity="center"
+                            android:text="32구역"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvjsn9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/bmjua_ttf"
+                            android:gravity="center"
+                            android:text="33구역"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/chart2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
 
@@ -542,6 +822,7 @@
             android:id="@+id/ipport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
